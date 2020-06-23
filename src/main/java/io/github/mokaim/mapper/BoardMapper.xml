@@ -11,4 +11,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             COUNT(*)
         FROM BOARD
     </select>
+    
+    <select id="boardList" resultType="io.github.mokaim.domain.BoardVO">
+    	SELECT 
+    	*
+    	 FROM BOARD
+    </select>
+    
+    <select id="boardDetail" parameterType="int" resultType="io.github.mokaim.domain.BoardVO">
+    	SELECT
+    	*
+    	FROM BOARD
+    	WHERE
+    	BNO = #{bno}
+    </select>
+    
+    <insert id="boardInsert" parameterType="io.github.mokaim.domain.BoardVO">
+    
+    	INSERT INTO
+    	BOARD (bno,subject, content, writer, reg_date)
+    	VALUES(#{bno},#{subject},#{content},#{writer},now())
+    </insert>
+    
+    <update id="boardUpdate" parameterType="io.github.mokaim.domain.BoardVO">
+    	UPDATE BOARD
+    		SET
+    	<if test="subject != null">
+    		SUBJECT = #{subject}
+    	</if>
+    	
+    	<if test="subject != null and content != null"> , </if>
+    	
+    	<if test="content != null">
+    		content = #{content}
+    	</if>
+    	
+    	WHERE bno = #{bno}
+    	
+    </update>
+    
+    <delete id="boardDelete" parameterType="int">
+    
+    	DELETE FROM BOARD WHERE bno = #{bno}
+    
+    </delete>
 </mapper>
