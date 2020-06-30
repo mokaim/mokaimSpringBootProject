@@ -26,13 +26,15 @@ public class BoardController {
 		return "list";  //list View 를 리턴시킨다.
 	}
 	
-	@RequestMapping("/list/{bno}")   //@PathVariable 어노테이션은 요청에 들어온 값을 자바데이터로 변환시켜 해당 변수에 집어넣는다.
+	@RequestMapping("/detail/{bno}")   //@PathVariable 어노테이션은 요청에 들어온 값을 자바데이터로 변환시켜 해당 변수에 집어넣는다.
 	private String boardDetail(@PathVariable int bno, Model model) throws Exception {
 		
 		model.addAttribute("detail", mBoardService.boardDetailService(bno));
 		
 		return "detail";	//detail view 를 리턴시킨다.
 	}
+	
+	
 	
 	@RequestMapping("/insert")
 	private String boardInsert() {
@@ -79,6 +81,10 @@ public class BoardController {
 		mBoardService.boardDeleteService(bno);
 		return "redirect/list";
 	}
+	
+	
+
+
 	
 	
 	
