@@ -36,4 +36,8 @@ public class BoardService {
 	public int boardDeleteService(int bno) throws Exception {
 		return mBoardMapper.boardDelete(bno);
 	}
+	
+	public void test() {
+		System.out.println("스프링 @Resource 애노테이션 의존성 테스트를 위한 메소드");
+	}
 }
